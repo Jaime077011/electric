@@ -9,39 +9,62 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/11da0b92e9.js" crossorigin="anonymous"></script>
+
     </head>
     <body>
         <canvas id="canvas"></canvas>
-        <div class="content fixed ">
-          <div class="text">Login</div>
-           <form action="#">
-             <div class="field">
-               <span class="fa fa-user"></span>
-               <input type="text" placeholder="Email" required>
-            
-             </div>
-             <div class="field">
-               <span class="fa fa-lock"></span>
-               <input type="password" placeholder="Password">
-               
-             </div>
-             
-             <button>Log in</button>
-             <div class="or">Or</div>
-             <div class="icon-button"> 
-                 
-               <span class="facebook"><i class="fa fa-facebook"></i>  Facebook</span>
-         
-               <span><i class="fa fa-google"></i>  Google</span>
-         
-         
-             </div>
-           </form>
-         </div>
-        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1367527360&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/4x4deviation" title="4x4 Deviation" target="_blank" style="color: #cccccc; text-decoration: none;">4x4 Deviation</a> · <a href="https://soundcloud.com/4x4deviation/electro-mix-the-droid" title="4x4 Deviation Mix Series- The Droid (09)" target="_blank" style="color: #cccccc; text-decoration: none;">4x4 Deviation Mix Series- The Droid (09)</a></div>
+        <h1 class="content buymeacoffee">Hello, i'm jaime!</h1>
+        <div class="content buymeacoffee2">
+          <a><i class="fa-solid fa-envelope fa-beat fa-lg icon"></i></a>
+          <a><i class="fa-brands fa-github fa-beat fa-lg icon"></i></a>
+          <a><i class="fa-brands fa-linkedin fa-beat fa-lg icon"></i></a>
+        </div>
 
-        
-        
-        <script src="script.js" async defer></script>
+          <script src="script.js" async defer></script>
+          <script>
+            document.addEventListener('DOMContentLoaded',function(event){
+              // array with texts to type in typewriter
+              var dataText = [ "Hello, i'm jaime!", "code architect by day,", "frontend maestro by night."];
+              
+              // type one text in the typwriter
+              // keeps calling itself until the text is finished
+              function typeWriter(text, i, fnCallback) {
+                // chekc if text isn't finished yet
+                if (i < (text.length)) {
+                  // add next character to h1
+                 document.querySelector("h1").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+            
+                  // wait for a while and call this function again for next character
+                  setTimeout(function() {
+                    typeWriter(text, i + 1, fnCallback)
+                  }, 100);
+                }
+                // text finished, call callback if there is a callback function
+                else if (typeof fnCallback == 'function') {
+                  // call callback after timeout
+                  setTimeout(fnCallback, 700);
+                }
+              }
+              // start a typewriter animation for a text in the dataText array
+               function StartTextAnimation(i) {
+                 if (typeof dataText[i] == 'undefined'){
+                    setTimeout(function() {
+                      StartTextAnimation(0);
+                    }, 20000);
+                 }
+                 // check if dataText[i] exists
+                if (i < dataText[i].length) {
+                  // text exists! start typewriter animation
+                 typeWriter(dataText[i], 0, function(){
+                   // after callback (and whole text has been animated), start next text
+                   StartTextAnimation(i + 1);
+                 });
+                }
+              }
+              // start the text animation
+              StartTextAnimation(0);
+            });
+          </script>
     </body>
 </html>
